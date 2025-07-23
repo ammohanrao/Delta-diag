@@ -1,8 +1,8 @@
 # Delta-diag
-A medical diagnostic decision support model on DBMI database with 77% accuracy.
-Main logic is described in 
-Running test_trial_col.sh prepares data from DBMI database.
-Running trial_run3.sh gives following output.
+A medical diagnostic decision support model on DBMI database with 77% accuracy.\\
+Main logic is described in explainer.txt \\
+Running test_trial_col.sh prepares data from DBMI database.\\
+Running trial_run3.sh gives following output.\\
 Epoch 87/100
 2077/2077 [==============================] - 2s 1ms/step - loss: 0.3514 - accuracy: 0.7699
 Epoch 88/100
