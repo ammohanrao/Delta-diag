@@ -1,0 +1,43 @@
+aim: trial_col.sh
+
+col_prox_ftrs: list of col disease-feature links with cui and their ids. [cui_ftr, ftr_def, ftr_id, case_id]
+
+col_ftrs1: different cui for each feature is identified by a single numerical.
+
+                  1        2       3       4                                                      1    2    3    4
+col_prox_ftrs [cui_ftr, ftr_def, ftr_id, case_id] + col_mrhier: mrhier data for col_ftrs. cols: [cui, aui, pos, id ]  = [$2,$1,$3,b[$1],c[$1],a[$1]] = [X]
+
+        1    2    3      4       5      6
+[X] = [aui, cui, pos, ftr_id, case_id,ftr_def]
+
+                                1           2         3
+[X] + col_mrhier_diag1: cols: [aui_diag, cui_diag, pos_diag] derived from mrhier data using diag cui (see col_mrhier_diag1_def) = [$2,$1,$3,b[$1],c[$1],d[$1],e[$1]]
+
+col_mrhier_prox: [cui_diag,aui_diag,pos_diag, pos_ftr,ftr_id, case_id, ftr_def]
+                     1       2        3         4        5       6      7
+
+col_diag1_nr [cui, cui_def, cui_id] + col_mrhier_prox [cui,aui,pos, pos_1,ftr_id,case-id,diag,ftr_id_def] = [Y]
+					[$2,b[$1],$3,$4,$5,$6,$7,a[$1]]
+
+        1         2          3        4       5       6      7       8
+[Y]=[aui_diag,cui_id_diag,pos_diag,pos_ftr,ftr_id,case_id,ftr_def, cui_def]
+
+col_aui_nr = [aui, aui_id]
+                                                           1             2       3      4       5      6       7        8
+col_aui_nr + [Y] = [Z] = [$2,a[$1],$3,$4,$5,$6,$7,$8] = [cui_id_diag, aui_id,pos_diag,pos_ftr,ftr_id,case_id,ftr_def, cui_def]
+
+                                                  1           2       3       4       5       6
+[Z] = col_prox_corpus: [$1,$2,$3,$4,$5,$6] = [cui_id_diag, aui_id,pos_diag,pos_ftr,ftr_id, case_id]
+
+############################   DISCUSSION    ###########################
+
+INPUT FILES: columbia.csv  downloaded from DBMI site.
+
+Declared ftr ids in: col_ftrs1: dis ids in: col_diag1nr (Note: case id = diag ids) and col_auinr.
+
+Derived file : col_prox_ftrs: list of col disease-feature links with cui and their ids.
+
+Unification result: col_mrhier_prox has all necessary data for ML. Note disease and its shared aui derived from input ftr data.
+
+cui, aui are converted to their ids for running ML.
+
